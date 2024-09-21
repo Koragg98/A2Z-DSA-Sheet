@@ -1,6 +1,6 @@
 package HashingPractice;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author iraki
@@ -39,11 +39,24 @@ public class CharFrequency {
 //            HashArray[str.charAt(i)-'a']++;
 //        }
         
+//        for(int i=0;i<str.length();i++)
+//        {
+//            HashArray2[str.charAt(i)]++;
+//        }
+        
+        
+        //HashMap Approach
+        HashMap<Character,Integer> hm=new HashMap<>();
+        
         for(int i=0;i<str.length();i++)
         {
-            HashArray2[str.charAt(i)]++;
+            hm.computeIfPresent(str.charAt(i), (k,v)->v+1);
+            hm.computeIfAbsent(str.charAt(i), (k)->1);
         }
         
+        
+        
+        //Test Cases
         System.out.println("Enter the test case: ");
         int t=sc.nextInt();
         while(t-->0)
@@ -52,9 +65,11 @@ public class CharFrequency {
             
             //System.out.println(printFrequency(c,str));
             //System.out.println(HashArray[c-'a']);
-            System.out.println(HashArray2[c]);
-           
+            //System.out.println(HashArray2[c]); 
+            System.out.println((hm.get(c) == null)?"0":hm.get(c));
         }
+        
+        
     }
 
 }
