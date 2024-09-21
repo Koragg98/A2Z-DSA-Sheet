@@ -1,6 +1,6 @@
-package RecursionPractice;
+package HashingPractice;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author iraki
@@ -34,10 +34,10 @@ public class PrintFrequency {
         for(int i=0;i<n;i++)
             arr[i]=sc.nextInt();
         
-        for(int i=0;i<n;i++)
-        {
-            System.out.println(arr[i]+"="+printFrequency(arr,arr[i]));
-        }
+//        for(int i=0;i<n;i++)
+//        {
+//            System.out.println(arr[i]+"="+printFrequency(arr,arr[i]));
+//        }
         
         
         /*
@@ -55,21 +55,37 @@ public class PrintFrequency {
         
         So, the overall complexity is O(n)
         */
-        System.out.println("Hashing Technique");
-        for(int i=0;i<n;i++)
-        {
-            HashArray[arr[i]]+=1;   //O(n)
-        }
-       
-        for(int i=0;i<n;i++)
-        {
-            System.out.println(arr[i]+"="+HashArray[arr[i]]);  //O(n)
-        }
+//        System.out.println("Hashing Technique");
+//        for(int i=0;i<n;i++)
+//        {
+//            HashArray[arr[i]]+=1;   //O(n)
+//        }
+//       
+//        for(int i=0;i<n;i++)
+//        {
+//            System.out.println(arr[i]+"="+HashArray[arr[i]]);  //O(n)
+//        }
         /*
         Problem: is the limitation of array size in main method array size can be at most 10^6 and globally 10^7
         but the maximum element of the provided array may be 10^9
         So we can't use this technique in that case. For this we use HashMap which use diffent HashFunction to store the element
         */
+        
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        
+        for(int i=0;i<n;i++)
+        {
+//            if(hm.containsKey(arr[i]))
+//                //hm.compute(arr[i], (k,v)->v+1);
+//                hm.replace(arr[i],hm.get(arr[i])+1);
+//            else
+//                hm.put(arr[i], 1); //Whenever we encounter a new element for first time set frequency to 1
+            
+            hm.computeIfPresent(arr[i], (k,v)-> v+1);
+            hm.computeIfAbsent(arr[i], (k)->1);
+        }
+        
+        System.out.println(hm);
     }
 
 }
