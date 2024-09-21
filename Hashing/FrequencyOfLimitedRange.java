@@ -43,13 +43,29 @@ class Solution {
     // Function to count the frequency of all elements from 1 to N in the array.
     public static void frequencyCount(int arr[], int N, int P) {
         // do modify in the given array
-        int res[]=new int[N+1];
+        // int res[]=new int[N+1];
         
-        for(int i=0;i<arr.length;i++)
+        // for(int i=0;i<arr.length;i++)
+        // {
+        //     if(arr[i]<=N)
+        //         res[arr[i]]++;
+        // }
+        // System.arraycopy(res,1,arr,0,N);
+        
+        //creating hashmap and putting all values
+        HashMap <Integer,Integer> hm=new HashMap<>();
+        for(int i=0;i<N;i++)
         {
-            if(arr[i]<=N)
-                res[arr[i]]++;
+            if(hm.containsKey(arr[i]))
+                hm.compute(arr[i],(k,v)->v+1);
+            else
+                hm.put(arr[i],1);
         }
-        System.arraycopy(res,1,arr,0,N);
+        // Now,copying the arr
+        for(int i=0;i<N;i++)
+        {
+            int res=(hm.get(i+1)==null)?0:hm.get(i+1);
+            arr[i]=res;
+        }
     }
 }
