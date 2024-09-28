@@ -1,6 +1,4 @@
-package ArrayEasyProblem;
-
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author iraki
@@ -20,7 +18,8 @@ public class SecondLargest {
         //         secondLargest=arr[i];
         // }
         // return secondLargest;
-        
+        if (arr.length==0||arr.length==1)
+            return -1;
         int largest=arr[0];
         int secondLargest=-1;
         for(int i=1;i<arr.length;i++)
