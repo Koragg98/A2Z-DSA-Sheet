@@ -8,6 +8,18 @@ import java.util.Scanner;
 
 public class LargestElement {
 
+    //Recursive approach
+    static int max=Integer.MIN_VALUE;
+    static int maxElement(int arr[],int n,int i)
+    {
+     if(i<n)
+        {
+            if(arr[i]>max)
+            max=arr[i];
+            maxElement(arr,n,i+1);
+        }
+      return max;  
+    }
     public static int getLargest(int[] arr) 
     {
         // code here
