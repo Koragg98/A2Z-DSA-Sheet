@@ -1,3 +1,5 @@
+//Union and Intersection of two sorted array
+
 package ArrayEasyProblem;
 import java.util.*;
 /**
@@ -61,13 +63,56 @@ public class UnionOfArray {
         
         return union;
     }
+    public static ArrayList<Integer> findIntersection(int arr1[], int arr2[], int n, int m)
+    {
+        //Brute Force   O(mn)
+        ArrayList<Integer> intersection=new ArrayList<>();
+//        int vis[]=new int[m];
+//        
+//        for(int i=0;i<n;i++)
+//        {
+//            for(int j=0;j<m;j++)
+//            {
+//                if(arr2[j]==arr1[i] && vis[j]==0)
+//                {
+//                    intersection.add(arr2[j]);
+//                    vis[j]=1;
+//                    break;
+//                }
+//                if(arr2[j]>arr1[i]) break;
+//            }
+//        }
+        
+        //Optimal O(m)
+        int i=0,j=0;
+        while(i<n && j<m)
+        {
+            if(arr1[i]==arr2[j])
+            {
+                intersection.add(arr1[i]);
+                i++;
+                j++;
+            }
+            if(arr1[i]<arr2[j]) {i++;}
+            else j++;
+        }
+        
+        return intersection;
+    }
+    
     public static void main(String[] args) {
-        int n = 10, m = 7;
-        int arr1[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        int arr2[] = {2, 3, 4, 4, 5, 11, 12};
+        int n = 12, m = 8;
+        int arr1[] = {1, 2, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10};
+        int arr2[] = {2, 3, 3, 4, 4, 5, 11, 12};
         ArrayList<Integer> Union = findUnion(arr1, arr2, n, m);
+        ArrayList<Integer> Intersection = findIntersection(arr1, arr2, n, m);
+        
         System.out.println("Union of arr1 and arr2 is ");
         for (int val: Union)
+            System.out.print(val+" ");
+        System.out.println();
+        System.out.println("Intersection of arr1 and arr2 is ");
+        for (int val: Intersection)
             System.out.print(val+" ");
     }
 }
