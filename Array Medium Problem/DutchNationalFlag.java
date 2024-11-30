@@ -17,7 +17,8 @@ public class DutchNationalFlag {
         //Arrays.sort(nums);
         
         //Better:
-        /*int cnt0=0,cnt1=0,cnt2=0;
+        /*
+        int cnt0=0,cnt1=0,cnt2=0;
         for(int i=0;i<nums.length;i++)
         {
             if(nums[i]==0) cnt0++;
@@ -26,10 +27,19 @@ public class DutchNationalFlag {
         }
         for(int i=0;i<cnt0;i++) nums[i]=0;
         for(int i=cnt0;i<cnt0+cnt1;i++) nums[i]=1;
-        for(int i=cnt0+cnt1;i<nums.length;i++) nums[i]=2;*/
+        for(int i=cnt0+cnt1;i<nums.length;i++) nums[i]=2;
+        */
         
         //Optimal(Dutch National Flag Algo):
-        
+        /*
+        We have three pointer: low,mid,high
+        0 to low-1: 0's
+        low to mid-1: 1's
+        mid to high: Unsorted
+        high+1 to n-1: 2's
+        */
+        //Initially whole array is unsorted so mid=0,high=n-1;
+        //Note, low=0 => (0 to low-1) i.e., 0 to -1 and (low to mid-1) i.e., 0 to -1 => Both doesn't exist 
         int low=0,mid=0,high=(nums.length-1);
         while(mid<=high)
         {
